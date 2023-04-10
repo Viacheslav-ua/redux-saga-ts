@@ -2,6 +2,8 @@ import {
   FETCH_TODO_REQUEST,
   FETCH_TODO_SUCCESS,
   FETCH_TODO_FAILURE,
+  INCREASE_COUNT,
+  DECREASE_COUNT,
 } from "./actionTypes";
 
 export interface ITodo {
@@ -15,6 +17,7 @@ export interface TodoState {
   pending: boolean;
   todos: ITodo[];
   error: string | null;
+  count: number;
 }
 
 export interface FetchTodoSuccessPayload {
@@ -27,6 +30,12 @@ export interface FetchTodoFailurePayload {
 
 export interface FetchTodoRequest {
   type: typeof FETCH_TODO_REQUEST;
+}
+export interface IncreaseCount {
+  type: typeof INCREASE_COUNT;
+}
+export interface DecreaseCount {
+  type: typeof DECREASE_COUNT;
 }
 
 export type FetchTodoSuccess = {
@@ -42,4 +51,6 @@ export type FetchTodoFailure = {
 export type TodoActions =
   | FetchTodoRequest
   | FetchTodoSuccess
-  | FetchTodoFailure;
+  | FetchTodoFailure
+  | IncreaseCount
+  | DecreaseCount;
