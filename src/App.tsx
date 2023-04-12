@@ -1,27 +1,29 @@
 
 // import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { increaseCount, decreaseCount } from "./store/todo/actions";
 
-import { getCountSelector } from "./store/todo/selectors";
+import { getNewsSelector, getPopularNewsSelector  } from "./store/news/news.selectors";
+import { fetchAllNewsRequest } from "./store/news/news.actions";
+import News from "./components/news/news";
 
-const App = () => {
+const App: React.FC = () => {
 
-  const count = useSelector(getCountSelector)
+  const latestNews = useSelector(getNewsSelector)
+  const popularNews = useSelector(getPopularNewsSelector)
+  
   const dispatch = useDispatch()
 
-  const handleIncrease = () => {
-    dispatch(increaseCount())
-  }
-  const handleDecrease = () => {
-    dispatch(decreaseCount())
+
+
+  const handleNews = () => {
+    dispatch(fetchAllNewsRequest())
   }
 
   return (
-    <div className="App">
-      <button onClick={handleIncrease}>+</button>
-      <button onClick={handleDecrease}>-</button>
-      <h1>{ count }</h1>
+    <div>
+      <button onClick={handleNews}>Get News</button>
+      <News news={latestNews} title="Latest News" />
+      <News news={popularNews} title="Popular News" />
     </div>
   );
 }

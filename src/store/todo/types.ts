@@ -31,12 +31,12 @@ export interface FetchTodoFailurePayload {
 export interface FetchTodoRequest {
   type: typeof FETCH_TODO_REQUEST;
 }
-export interface IncreaseCount {
-  type: typeof INCREASE_COUNT;
-}
-export interface DecreaseCount {
-  type: typeof DECREASE_COUNT;
-}
+// export interface IncreaseCount {
+//   type: typeof INCREASE_COUNT;
+// }
+// export interface DecreaseCount {
+//   type: typeof DECREASE_COUNT;
+// }
 
 export type FetchTodoSuccess = {
   type: typeof FETCH_TODO_SUCCESS;
@@ -51,6 +51,4 @@ export type FetchTodoFailure = {
 export type TodoActions =
   | FetchTodoRequest
   | FetchTodoSuccess
-  | FetchTodoFailure
-  | IncreaseCount
-  | DecreaseCount;
+  | FetchTodoFailure;

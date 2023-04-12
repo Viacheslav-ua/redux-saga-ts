@@ -36,16 +36,16 @@ const todoReducer = (state = initialState, action: TodoActions) => {
         todos: [],
         error: action.payload.error,
       };
-    case INCREASE_COUNT:
-      return {
-        ...state,
-        count: state.count + 1,
-      };
-    case DECREASE_COUNT:
-      return {
-        ...state,
-        count: state.count - 1,
-      };
+    // case INCREASE_COUNT:
+    //   return {
+    //     ...state,
+    //     count: state.count + 1,
+    //   };
+    // case DECREASE_COUNT:
+    //   return {
+    //     ...state,
+    //     count: state.count - 1,
+    //   };
     default:
       return {
         ...state,
