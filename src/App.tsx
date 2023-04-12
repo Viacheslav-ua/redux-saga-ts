@@ -1,8 +1,6 @@
-
-// import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getNewsSelector, getPopularNewsSelector  } from "./store/news/news.selectors";
+import { getErrors, getNewsSelector, getPopularNewsSelector  } from "./store/news/news.selectors";
 import { fetchAllNewsRequest } from "./store/news/news.actions";
 import News from "./components/news/news";
 
@@ -10,6 +8,7 @@ const App: React.FC = () => {
 
   const latestNews = useSelector(getNewsSelector)
   const popularNews = useSelector(getPopularNewsSelector)
+  const  { newsError, popularNewsError } = useSelector(getErrors)
   
   const dispatch = useDispatch()
 
@@ -22,8 +21,8 @@ const App: React.FC = () => {
   return (
     <div>
       <button onClick={handleNews}>Get News</button>
-      <News news={latestNews} title="Latest News" />
-      <News news={popularNews} title="Popular News" />
+      <News news={latestNews} error={newsError} title="Latest News" />
+      <News news={popularNews} error={popularNewsError} title="Popular News" />
     </div>
   );
 }

@@ -2,8 +2,6 @@ import {
   FETCH_TODO_REQUEST,
   FETCH_TODO_SUCCESS,
   FETCH_TODO_FAILURE,
-  INCREASE_COUNT,
-  DECREASE_COUNT,
 } from "./actionTypes";
 
 export interface ITodo {

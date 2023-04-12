@@ -3,27 +3,22 @@ import {
   FETCH_ALL_NEWS_REQUEST,
   FETCH_NEWS_SUCCESS,
   FETCH_POPULAR_NEWS_SUCCESS,
-  FETCH_POPULAR_NEWS_REQUEST,
   FETCH_NEWS_FAILURE,
-} from "./news.actionTypes";
+  FETCH_POPULAR_NEWS_FAILURE,
+} from "./news.constants";
 
 export interface INews {
 
 }
 
 export interface NewsState {
-  pending: boolean;
   news: any[];
   popularNews: any[];
-  error: string | null;
 }
 
-// export interface FetchNewsSuccessPayload {
-//   news: any[];
-// }
-
-export interface FetchNewsFailurePayload {
-  error: string;
+export interface ErrorNewsState {
+  newsError: string | null;
+  popularNewsError: string | null;
 }
 
 export interface FetchNewsRequest {
@@ -46,7 +41,12 @@ export type FetchPopularNewsSuccess = {
 
 export type FetchNewsFailure = {
   type: typeof FETCH_NEWS_FAILURE;
-  payload: FetchNewsFailurePayload;
+  payload: string;
+};
+
+export type FetchPopularNewsFailure = {
+  type: typeof FETCH_POPULAR_NEWS_FAILURE;
+  payload: string;
 };
 
 
@@ -55,3 +55,4 @@ export type NewsActions =
   | FetchNewsSuccess
   | FetchPopularNewsSuccess
   | FetchNewsFailure
+  | FetchPopularNewsFailure

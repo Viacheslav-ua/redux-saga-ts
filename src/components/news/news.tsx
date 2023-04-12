@@ -3,11 +3,12 @@ import './news.css';
 type PropsType =  {
   news: any[];
   title: string;
+  error: string | null;
 }
 
-const News: React.FC<PropsType> = ({ news, title }) => {
+const News: React.FC<PropsType> = ({ news, title, error }) => {
   if (!news || news.length === 0) {
-    return null;
+    return error ? <h2>{ error }</h2> : null;
   }
 
   return (

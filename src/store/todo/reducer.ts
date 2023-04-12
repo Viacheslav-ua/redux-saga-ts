@@ -2,8 +2,6 @@ import {
   FETCH_TODO_REQUEST,
   FETCH_TODO_SUCCESS,
   FETCH_TODO_FAILURE,
-  INCREASE_COUNT,
-  DECREASE_COUNT,
 } from "./actionTypes";
 
 import { TodoActions, TodoState } from "./types";
@@ -36,16 +34,6 @@ const todoReducer = (state = initialState, action: TodoActions) => {
         todos: [],
         error: action.payload.error,
       };
-    // case INCREASE_COUNT:
-    //   return {
-    //     ...state,
-    //     count: state.count + 1,
-    //   };
-    // case DECREASE_COUNT:
-    //   return {
-    //     ...state,
-    //     count: state.count - 1,
-    //   };
     default:
       return {
         ...state,
