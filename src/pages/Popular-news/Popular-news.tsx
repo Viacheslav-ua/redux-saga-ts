@@ -1,6 +1,12 @@
 
+import style from "Popular-news.module.css"
+
 const PopularNews: React.FC = () => { 
-  return (<></>)
+  return (
+    <>
+      <h2>Popular-news WORKS</h2>
+    </>
+  )
 }
 
 export default PopularNews

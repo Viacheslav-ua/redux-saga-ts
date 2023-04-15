@@ -1,0 +1,21 @@
+.gridContainer {
+    display: grid;
+    height: 100vh;
+    grid-template-areas: "header" "main""footer";
+    grid-template-rows: 50px 1fr 30px;
+  }
+  
+  .header {
+    grid-area: header;
+  }
+  
+  .main {
+    grid-area: main;
+    overflow: hidden;
+  }
+  
+  .footer {
+    grid-area: footer;
+    position: sticky;
+    bottom: 0;
+  }

@@ -1,0 +1,22 @@
+.content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* padding: 10px 0; */
+  width: 100%;
+  height: 100%;
+  background-color: #287b7b;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: white;
+  transition-property: color;
+  transition-duration: 200ms;
+  transition-timing-function: linear;
+}
+.link:hover {
+  color: #b00020;
+}

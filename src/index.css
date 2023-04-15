@@ -1,13 +1,26 @@
-body {
+html, body { 
+  height: 100%; 
+}
+
+body { 
+  margin: 0; 
+  font-family: "Montserrat", sans-serif;
+}
+
+.active {
+  cursor: default;
+}
+
+/* body {
   margin: 0;
   padding: 20px;
   font-family: "Montserrat", sans-serif;
   background: linear-gradient(to bottom, #59c173, #a17fe0, #5d26c1);
   min-height: 100vh;
   color: #fff;
-}
+} */
 
-button {
+/* button {
   width: 100%;
   padding: 20px 30px;
   text-transform: uppercase;
@@ -16,8 +29,8 @@ button {
   color: #fff;
   border: none;
   background-color: rgba(0, 0, 0, 0.4);
-}
+} */
 
-button:hover {
+/* button:hover {
   background-color: rgba(0, 0, 0, 0.6);
-}
+} */
