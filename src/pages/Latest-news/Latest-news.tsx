@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 
 import { getErrors, getNewsSelector } from "../../store/news/news.selectors";
-import { fetchAllNewsRequest } from "../../store/news/news.actions";
+import { fetchNewsRequest } from "../../store/news/news.actions";
 import News from "../../components/News";
 import BackgroundNews from "../../components/BackgroundNews/BackgroundNews";
 import { useEffect } from "react";
@@ -13,7 +13,7 @@ const LatestNews: React.FC = () => {
       const dispatch = useDispatch()
     
       useEffect(() => {
-        dispatch(fetchAllNewsRequest());
+        dispatch(fetchNewsRequest());
       }, [dispatch]);
 
       return (

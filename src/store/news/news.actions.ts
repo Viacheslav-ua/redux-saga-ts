@@ -1,5 +1,7 @@
 import { 
-  FETCH_ALL_NEWS_REQUEST,
+  // FETCH_ALL_NEWS_REQUEST,
+  FETCH_NEWS_REQUEST,
+  FETCH_POPULAR_NEWS_REQUEST,
   FETCH_NEWS_SUCCESS,
   FETCH_POPULAR_NEWS_SUCCESS,
   FETCH_NEWS_FAILURE,
@@ -10,12 +12,17 @@ import {
   FetchNewsSuccess,
   FetchNewsFailure,
   FetchPopularNewsSuccess,
-  FetchAllNewsRequest,
+  FetchNewsRequest,
+  FetchPopularNewsRequest,
   FetchPopularNewsFailure,
 } from './news.types'
 
-export const fetchAllNewsRequest = (): FetchAllNewsRequest => ({
-  type: FETCH_ALL_NEWS_REQUEST,
+export const fetchNewsRequest = (): FetchNewsRequest => ({
+  type: FETCH_NEWS_REQUEST,
+});
+
+export const fetchPopularNewsRequest = (): FetchPopularNewsRequest => ({
+  type: FETCH_POPULAR_NEWS_REQUEST,
 });
 
 export const fetchNewsSuccess = (payload: any[]): FetchNewsSuccess => ({

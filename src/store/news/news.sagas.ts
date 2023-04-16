@@ -5,6 +5,7 @@ import {
   put,
   takeEvery,
   fork,
+  all,
   // takeLatest,
   // spawn
 } from "redux-saga/effects";
@@ -15,7 +16,7 @@ import {
   fetchNewsFailure,
   fetchPopularNewsFailure
 } from "./news.actions";
-import { FETCH_ALL_NEWS_REQUEST } from "./news.constants";
+import { FETCH_NEWS_REQUEST, FETCH_POPULAR_NEWS_REQUEST } from "./news.constants";
 import { getLatestNews, getPopularNews } from "./news.api";
 
 export function* handleLatestNews() { 
@@ -37,18 +38,29 @@ export function* handlePopularNews() {
 
 }
 
-export function* handleAllNews() {
-  yield fork(handleLatestNews)
-  yield fork(handlePopularNews)
+// export function* handleAllNews() {
+//   yield fork(handleLatestNews)
+//   yield fork(handlePopularNews)
 
   // yield all([
   //   call(fetchLatestNewsSaga),
   //   call(fetchPopularNewsSaga),
   // ])
+// }
+
+export function* watchPopularNewsSaga() {
+  yield takeEvery(FETCH_POPULAR_NEWS_REQUEST, handlePopularNews)
+}
+
+export function* watchLatestNewsSaga() {
+  yield takeEvery(FETCH_NEWS_REQUEST, handleLatestNews)
 }
 
 function* newsSaga() {
-  yield takeEvery(FETCH_ALL_NEWS_REQUEST, handleAllNews)
+  yield all([
+    fork(watchLatestNewsSaga),
+    fork(watchPopularNewsSaga),
+  ])
 }
 
 export default newsSaga

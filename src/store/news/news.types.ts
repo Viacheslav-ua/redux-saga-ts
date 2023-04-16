@@ -1,6 +1,6 @@
 import {
   FETCH_NEWS_REQUEST,
-  FETCH_ALL_NEWS_REQUEST,
+  FETCH_POPULAR_NEWS_REQUEST,
   FETCH_NEWS_SUCCESS,
   FETCH_POPULAR_NEWS_SUCCESS,
   FETCH_NEWS_FAILURE,
@@ -25,8 +25,8 @@ export interface FetchNewsRequest {
   type: typeof FETCH_NEWS_REQUEST;
 }
 
-export interface FetchAllNewsRequest {
-  type: typeof FETCH_ALL_NEWS_REQUEST;
+export interface FetchPopularNewsRequest {
+  type: typeof FETCH_POPULAR_NEWS_REQUEST;
 }
 
 export type FetchNewsSuccess = {
@@ -52,6 +52,7 @@ export type FetchPopularNewsFailure = {
 
 export type NewsActions =
   | FetchNewsRequest
+  | FetchPopularNewsRequest
   | FetchNewsSuccess
   | FetchPopularNewsSuccess
   | FetchNewsFailure
