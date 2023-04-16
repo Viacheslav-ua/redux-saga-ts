@@ -1,11 +1,26 @@
-import style from "./Latest-news.module.css"
+import { useSelector, useDispatch } from "react-redux";
+
+import { getErrors, getNewsSelector } from "../../store/news/news.selectors";
+import { fetchAllNewsRequest } from "../../store/news/news.actions";
+import News from "../../components/News";
+import BackgroundNews from "../../components/BackgroundNews/BackgroundNews";
+import { useEffect } from "react";
 
 const LatestNews: React.FC = () => { 
-  return (
-    <>
-      <h2>Latest-news works</h2>
-    </>
-  )
+      const latestNews = useSelector(getNewsSelector)
+      const  { newsError } = useSelector(getErrors)
+      
+      const dispatch = useDispatch()
+    
+      useEffect(() => {
+        dispatch(fetchAllNewsRequest());
+      }, [dispatch]);
+
+      return (
+        <BackgroundNews>
+          <News news={latestNews} error={newsError} title="Latest News" />
+        </BackgroundNews>
+      );
 }
 
 export default LatestNews

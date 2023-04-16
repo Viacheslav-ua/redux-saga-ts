@@ -1,5 +1,5 @@
 
-import style from "Todo.module.css"
+import style from "./Todo.module.css"
  
 const Todo: React.FC = () => { 
   return (
