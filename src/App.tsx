@@ -3,7 +3,10 @@ import { Routes, Route, Navigate } from "react-router-dom"
 import Layout from './components/Layout'
 import { RoutePath } from "./enums"
 import LatestNews from "./pages/Latest-news"
+import Login from "./pages/Login"
 import PopularNews from "./pages/Popular-news"
+import Registration from "./pages/Registration"
+import Resume from "./pages/Resume"
 import Todo from "./pages/Todo"
 // import ArchiveNotes from './pages/Archive'
 
@@ -11,11 +14,14 @@ const App: React.FC = () => {
   return (
     <>
     <Routes>
-      <Route path={RoutePath.Todo} element={<Layout />}>
-        <Route index element={<Todo />} />
-        <Route path={RoutePath.LatestNews} element={<LatestNews />} />
+      <Route path={RoutePath.LatestNews} element={<Layout />}>
+        <Route index element={<LatestNews />} />
         <Route path={RoutePath.PopularNews} element={<PopularNews />} />
-        <Route path="*" element={<Navigate to={RoutePath.Todo} replace />} />
+        <Route path={RoutePath.Login} element={<Login />} />
+        <Route path={RoutePath.Registration} element={<Registration />} />
+        <Route path={RoutePath.Resume} element={<Resume />} />
+        <Route path={RoutePath.Todo} element={<Todo />} />
+        <Route path="*" element={<Navigate to={RoutePath.LatestNews} replace />} />
       </Route>
     </Routes>
    </> 

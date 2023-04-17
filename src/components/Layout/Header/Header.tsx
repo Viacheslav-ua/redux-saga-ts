@@ -3,9 +3,20 @@ import style from './Header.module.css'
 import { RoutePath } from "../../../enums"
 
 const Header: React.FC = () => { 
-    return (
+  return (
     <header className={style.header}>
       <div className={style.navigate}>
+        <NavLink 
+        style={({ isActive }) => isActive ? {color: 'red'} : {}}
+        className={style.link} 
+        to={RoutePath.LatestNews}>Latest News</NavLink>
+
+
+        <NavLink 
+        style={({ isActive }) => isActive ? {color: 'red'} : {}}
+        className={style.link} 
+        to={RoutePath.PopularNews}>Popular News</NavLink>
+
         <NavLink 
         style={({ isActive }) => isActive ? {color: 'red'} : {}}
         className={style.link} 
@@ -14,13 +25,7 @@ const Header: React.FC = () => {
         <NavLink 
         style={({ isActive }) => isActive ? {color: 'red'} : {}}
         className={style.link} 
-        to={RoutePath.LatestNews}>Latest news</NavLink>
-
-
-        <NavLink 
-        style={({ isActive }) => isActive ? {color: 'red'} : {}}
-        className={style.link} 
-        to={RoutePath.PopularNews}>Popular news</NavLink>
+        to={RoutePath.Resume}>My Resume</NavLink>
       </div>
 
     </header>

@@ -18,7 +18,9 @@ const News: React.FC<PropsType> = ({ news, title, error }) => {
         {news.map(({ objectID, url, title, points, num_comments, created_at, author}) => (
           <li key={objectID} className={style.news}>
             <div className={style.description}>
-              <a href={url} className={style.newsTitle}>{title || 'No title'}</a>
+              <a href={url} 
+                className={style.newsTitle}
+                target="_blank" rel="noreferrer" >{title || 'No title'}</a>
               <span className={style.text}>{`${points || 0} points`}</span>
               <span className={style.comments}>{`${num_comments || 0} comments`}</span>
               <span className={style.date}>{new Date(created_at).toLocaleDateString()}</span>

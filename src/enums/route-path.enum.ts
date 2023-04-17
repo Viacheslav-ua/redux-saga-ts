@@ -1,5 +1,8 @@
 export enum RoutePath {
-  LatestNews = '/latest-news',
+  LatestNews = '/',
   PopularNews = '/popular-news',
-  Todo = '/'
+  Todo = '/todo-list',
+  Login = '/login',
+  Registration = '/registration',
+  Resume = '/resume'
 }
