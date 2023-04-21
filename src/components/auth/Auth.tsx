@@ -2,6 +2,8 @@
 import { useState } from "react"
 
 import { Button } from '@mui/material'
+import Stack from '@mui/material/Stack'
+import Divider from '@mui/material/Divider'
 import TextField from '@mui/material/TextField'
 import IconButton from '@mui/material/IconButton'
 import Input from '@mui/material/Input'
@@ -11,10 +13,10 @@ import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
 import style from "./Auth.module.css"
- 
+
 const Auth: React.FC = () => {
 
-const [login, setLogin] = useState<string>('')
+  const [login, setLogin] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [loginError, setLoginError] = useState<string | null>(null)
   const [passwordError, setPasswordError] = useState<string | null>(null)
@@ -38,38 +40,46 @@ const [login, setLogin] = useState<string>('')
 
   return (
     <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
-          
-          <TextField
-          className={style.input}
-          error={!!loginError}
-          id="standard-error-text"
-          label="Login"
-          name="login"
-          onChange={handleChangeInput}
-          variant="standard"
-          />
 
-          <Input
-            className={style.input}
-            id="standard-error-adornment-password"
-            type={showPassword ? 'text' : 'password'}
-            name="password"
-            error={!!passwordError}
-            placeholder="Password"
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
+      <TextField
+        className={style.input}
+        error={!!loginError}
+        id="standard-error-text"
+        label="Login"
+        name="login"
+        onChange={handleChangeInput}
+        variant="standard"
+      />
 
-        </FormControl>
+      <Input
+        className={style.input}
+        id="standard-error-adornment-password"
+        type={showPassword ? 'text' : 'password'}
+        name="password"
+        error={!!passwordError}
+        placeholder="Password"
+        endAdornment={
+          <InputAdornment position="end">
+            <IconButton
+              aria-label="toggle password visibility"
+              onClick={handleClickShowPassword}
+              onMouseDown={handleMouseDownPassword}
+            >
+              {showPassword ? <VisibilityOff /> : <Visibility />}
+            </IconButton>
+          </InputAdornment>
+        }
+      />
+      <Stack className={style.buttons}
+        spacing={2}
+        direction="row"
+        divider={<Divider flexItem />}
+      >
+        <Button variant="outlined"><b>login</b></Button>
+        <Button variant="outlined"><b>registration</b></Button>
+      </Stack>
+
+    </FormControl>
   )
 }
 
