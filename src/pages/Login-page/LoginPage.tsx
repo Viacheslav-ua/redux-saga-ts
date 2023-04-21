@@ -12,7 +12,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { ErrorMsg } from "../../enums/exceptions.enum";
 
 import style from "./LoginPage.module.css";
-import Auth from "../../components/auth";
+import Auth from "../../components/Auth";
 
 
 interface FormValues {
