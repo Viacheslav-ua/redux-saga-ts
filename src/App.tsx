@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom"
+import { Toaster } from "react-hot-toast";
 
 import Layout from './components/Layout'
 import { RoutePath } from "./enums"
@@ -23,7 +24,8 @@ const App: React.FC = () => {
         <Route path={RoutePath.Todo} element={<Todo />} />
         <Route path="*" element={<Navigate to={RoutePath.LatestNews} replace />} />
       </Route>
-    </Routes>
+      </Routes>
+      <Toaster />
    </> 
   )
 }
