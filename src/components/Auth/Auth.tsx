@@ -14,7 +14,7 @@ import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
 import style from "./Auth.module.css"
-import { validationLogin, validationPassword } from "../../pages/Login-page"
+import { validationLogin, validationPassword } from "./service"
 
 export interface AuthValues {
   login: string;
