@@ -1,5 +1,6 @@
 
 import { useState } from "react"
+import toast from "react-hot-toast"
 
 import { Button } from '@mui/material'
 import Stack from '@mui/material/Stack'
@@ -13,73 +14,122 @@ import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
 import style from "./Auth.module.css"
+import { validationLogin, validationPassword } from "../../pages/Login-page"
 
-const Auth: React.FC = () => {
+export interface AuthValues {
+  login: string;
+  password: string
+}
+
+interface Props {
+  handleAuthSubmit: any
+  submitButtonName?: string
+  linkButtonName?: string
+  linkPath?: string
+
+}
+
+const Auth: React.FC<Props> = ({ 
+  handleAuthSubmit,
+  submitButtonName,
+  linkButtonName,
+ }) => {
 
   const [login, setLogin] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const [loginError, setLoginError] = useState<string | null>(null)
-  const [passwordError, setPasswordError] = useState<string | null>(null)
+  const [loginError, setLoginError] = useState<boolean>(false)
+  const [passwordError, setPasswordError] = useState<boolean>(false)
   const [showPassword, setShowPassword] = useState(false)
 
   const handleClickShowPassword = () => setShowPassword((show) => !show)
 
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+  const handleMouseDownPassword = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
   };
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.currentTarget.name === "login") setLogin(e.currentTarget.value)
-    if (e.currentTarget.name === "password") setPassword(e.currentTarget.value)
+    switch (e.currentTarget.name) {
+      case 'login': 
+        setLogin(e.currentTarget.value)
+        setLoginError(false)
+          break;
+
+      case 'password':
+        setPassword(e.currentTarget.value)
+        setPasswordError(false)
+          break;
+    
+      default:
+        break;
+    }
   }
 
-  const handleSubmit = () => {
-    return null
-  }
+  const handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const invalidLogin = validationLogin(login)
+    const invalidPassword = validationPassword(password)
+    if(invalidLogin) {
+      toast.error(invalidLogin)
+      setLoginError(true)
+    }
+        
+    if(invalidPassword) {
+      toast.error(invalidPassword)
+      setPasswordError(true)
+    }
 
+    console.log({login, password});
+    
+  }
 
   return (
-    <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
+    <form onSubmit={handleSubmit}>
+      <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
 
-      <TextField
-        className={style.input}
-        error={!!loginError}
-        id="standard-error-text"
-        label="Login"
-        name="login"
-        onChange={handleChangeInput}
-        variant="standard"
-      />
+        <TextField
+          className={style.input}
+          error={loginError}
+          id="standard-error-text"
+          label="Login"
+          name="login"
+          onChange={handleChangeInput}
+          variant="standard"
+        />
 
-      <Input
-        className={style.input}
-        id="standard-error-adornment-password"
-        type={showPassword ? 'text' : 'password'}
-        name="password"
-        error={!!passwordError}
-        placeholder="Password"
-        endAdornment={
-          <InputAdornment position="end">
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-            >
-              {showPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
-          </InputAdornment>
-        }
-      />
-      <Stack className={style.buttons}
-        spacing={2}
-        direction="row"
-        divider={<Divider flexItem />}
-      >
-        <Button variant="outlined"><b>login</b></Button>
-        <Button variant="outlined"><b>registration</b></Button>
-      </Stack>
+        <Input
+          className={style.input}
+          id="standard-error-adornment-password"
+          type={showPassword ? 'text' : 'password'}
+          name="password"
+          onChange={handleChangeInput}
+          error={passwordError}
+          placeholder="Password"
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+        <Stack className={style.buttons}
+          spacing={2}
+          direction="row"
+          divider={<Divider flexItem />}
+        >
+          <Button type="submit" 
+            variant="outlined"
+            disabled={loginError || passwordError}
+          ><b>{submitButtonName || 'submit'}</b></Button>
+          <Button variant="outlined"><b>{linkButtonName || 'link'}</b></Button>
+        </Stack>
 
-    </FormControl>
+      </FormControl>
+    </form>
   )
 }
 

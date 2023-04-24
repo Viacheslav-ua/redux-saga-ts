@@ -1,4 +1,8 @@
 export enum ErrorMsg {
-  RequiredField = 'This is a required field',
-  Short = 'It is too short',
+  LoginRequired = 'Login is required',
+  LoginShort = 'Login too short',
+  LoginLong = 'Login too long',
+  PasswordRequired = 'Password is required',
+  PasswordShort = 'Password too short',
+  PasswordLong = 'Password too long',
 }
