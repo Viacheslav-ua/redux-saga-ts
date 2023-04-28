@@ -1,15 +1,16 @@
 import axios from "axios";
+import { ServerUrl } from "../../enums";
 
 export const getLatestNews = async () => {
   const request = await axios.get(
-    'https://hn.algolia.com/api/v1/search?query=react&hitsPerPage=10&page=0'
+    ServerUrl.LatestNews
   )
   return request?.data
 }
 
 export const getPopularNews = async () => {
   const request = await axios.get(
-    'https://hn.algolia.com/api/v1/search?query=&hitsPerPage=10&page=0'
+    ServerUrl.PopularNews
   )
   return request?.data
 }

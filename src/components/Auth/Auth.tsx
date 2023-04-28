@@ -1,5 +1,6 @@
 
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
 
 import { Button } from '@mui/material'
@@ -25,7 +26,7 @@ interface Props {
   handleAuthSubmit: any
   submitButtonName?: string
   linkButtonName?: string
-  linkPath?: string
+  linkPath: string
 
 }
 
@@ -33,6 +34,7 @@ const Auth: React.FC<Props> = ({
   handleAuthSubmit,
   submitButtonName,
   linkButtonName,
+  linkPath,
  }) => {
 
   const [login, setLogin] = useState<string>('')
@@ -40,6 +42,7 @@ const Auth: React.FC<Props> = ({
   const [loginError, setLoginError] = useState<boolean>(false)
   const [passwordError, setPasswordError] = useState<boolean>(false)
   const [showPassword, setShowPassword] = useState(false)
+  const navigate = useNavigate();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show)
 
@@ -71,15 +74,16 @@ const Auth: React.FC<Props> = ({
     if(invalidLogin) {
       toast.error(invalidLogin)
       setLoginError(true)
+      return
     }
         
     if(invalidPassword) {
       toast.error(invalidPassword)
       setPasswordError(true)
+      return
     }
 
-    console.log({login, password});
-    
+    handleAuthSubmit({ login, password })
   }
 
   return (
@@ -125,7 +129,10 @@ const Auth: React.FC<Props> = ({
             variant="outlined"
             disabled={loginError || passwordError}
           ><b>{submitButtonName || 'submit'}</b></Button>
-          <Button variant="outlined"><b>{linkButtonName || 'link'}</b></Button>
+          <Button type="button"
+            variant="outlined"
+            onClick={() => navigate(linkPath)}
+          ><b>{linkButtonName || 'link'}</b></Button>
         </Stack>
 
       </FormControl>

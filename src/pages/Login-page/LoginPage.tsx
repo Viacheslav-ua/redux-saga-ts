@@ -15,41 +15,6 @@ import style from "./LoginPage.module.css";
 import Auth, { AuthValues } from "../../components/Auth";
 import { RoutePath } from "../../enums";
 
-
-// interface FormValues {
-//   login: string;
-//   password: string
-// }
-
-interface ErrorFormValues {
-  login?: string;
-  password?: string
-}
-
-const initialValues = {
-  login: "",
-  password: "",
-};
-
-// const validate = (values: FormValues) => {
-//   let errors: ErrorFormValues = {};
-
-//   if (!values.login) {
-//     errors.login = "Login is required";
-//   } else if (values.login.length < 3) {
-//     errors.login = "Password too short";
-//   }
-
-//   if (!values.password) {
-//     errors.password = "Password is required";
-//   } else if (values.password.length < 4) {
-//     errors.password = "Password too short";
-//   }
-
-//   return errors;
-// };
-
-
 const LoginPage: React.FC = () => {
 
   const handleClickBtn = () => {
@@ -57,8 +22,7 @@ const LoginPage: React.FC = () => {
   }
 
   const handleAuthSubmit = (authValues: AuthValues) => {
-    
-    
+    console.log(authValues);  
   }
 
   return (
